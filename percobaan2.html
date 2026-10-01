@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kasir Belanja</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #1b1f24;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+            gap: 25px;
+        }
+
+        .form,
+        .struk {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .form {
+            width: 55%;
+        }
+
+        .struk {
+            width: 45%;
+            background: #f8f6f1;
+        }
+
+        h1 {
+            color: #b08d57;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #222;
+            border-bottom: 2px solid #b08d57;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #b08d57;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+        }
+
+        .barang {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background: #fafafa;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #b08d57;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #927344;
+        }
+
+        .struk-atas {
+            text-align: center;
+        }
+
+        .garis {
+            border-bottom: 1px dashed #999;
+            margin: 15px 0;
+        }
+
+        .total {
+            font-size: 22px;
+            font-weight: bold;
+            color: #b08d57;
+        }
+
+        #hasil {
+            line-height: 1.8;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                display: block;
+            }
+
+            .form,
+            .struk {
+                width: auto;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- BAGIAN FORM -->
+    <div class="form">
+
+        <h1>KASIR BELANJA</h1>
+
+        <p>Masukkan data belanjaan</p>
+
+        <label>Nama Pembeli</label>
+        <input type="text" id="nama">
+
+
+        <div class="barang">
+
+            <h3>Belanjaan 1</h3>
+
+            <label>Nama Barang</label>
+            <input type="text" id="barang1">
+
+            <label>Harga</label>
+            <input type="number" id="harga1">
+
+            <label>Jumlah</label>
+            <input type="number" id="jumlah1">
+
+        </div>
+
+
+        <div class="barang">
+
+            <h3>Belanjaan 2</h3>
+
+            <label>Nama Barang</label>
+            <input type="text" id="barang2">
+
+            <label>Harga</label>
+            <input type="number" id="harga2">
+
+            <label>Jumlah</label>
+            <input type="number" id="jumlah2">
+
+        </div>
+
+
+        <div class="barang">
+
+            <h3>Belanjaan 3</h3>
+
+            <label>Nama Barang</label>
+            <input type="text" id="barang3">
+
+            <label>Harga</label>
+            <input type="number" id="harga3">
+
+            <label>Jumlah</label>
+            <input type="number" id="jumlah3">
+
+        </div>
+
+        <button onclick="hitung()">HITUNG TOTAL</button>
+
+    </div>
+
+
+    <!-- BAGIAN STRUK -->
+    <div class="struk">
+
+        <div class="struk-atas">
+
+            <h2>STRUK BELANJA</h2>
+
+            <p>Terima kasih telah berbelanja</p>
+
+        </div>
+
+        <div class="garis"></div>
+
+        <div id="hasil">
+            Nama pembeli dan hasil belanja akan muncul di sini.
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function hitung() {
+
+    let nama = document.getElementById("nama").value;
+
+    let barang1 = document.getElementById("barang1").value;
+    let harga1 = Number(document.getElementById("harga1").value);
+    let jumlah1 = Number(document.getElementById("jumlah1").value);
+
+    let barang2 = document.getElementById("barang2").value;
+    let harga2 = Number(document.getElementById("harga2").value);
+    let jumlah2 = Number(document.getElementById("jumlah2").value);
+
+    let barang3 = document.getElementById("barang3").value;
+    let harga3 = Number(document.getElementById("harga3").value);
+    let jumlah3 = Number(document.getElementById("jumlah3").value);
+
+    let total1 = harga1 * jumlah1;
+    let total2 = harga2 * jumlah2;
+    let total3 = harga3 * jumlah3;
+
+    let total = total1 + total2 + total3;
+
+    document.getElementById("hasil").innerHTML =
+        "<b>Nama Pembeli:</b> " + nama +
+        "<div class='garis'></div>" +
+
+        barang1 + " : Rp" + total1 + "<br>" +
+        barang2 + " : Rp" + total2 + "<br>" +
+        barang3 + " : Rp" + total3 +
+
+        "<div class='garis'></div>" +
+
+        "<div class='total'>TOTAL<br>Rp" + total + "</div>";
+}
+
+</script>
+
+</body>
+</html>

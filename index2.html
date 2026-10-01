@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Academic Student System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    color:#172033;
+}
+
+/* HEADER */
+
+.header{
+    min-height:330px;
+    padding:35px 7%;
+    background:linear-gradient(120deg,#111a2e,#263657);
+    color:white;
+    position:relative;
+    overflow:hidden;
+}
+
+.header:after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(226,194,105,.12);
+    right:-100px;
+    top:-130px;
+}
+
+.top{
+    position:relative;
+    z-index:2;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-weight:bold;
+    letter-spacing:2px;
+    color:#e8ca76;
+}
+
+.badge{
+    border:1px solid rgba(255,255,255,.25);
+    padding:9px 15px;
+    border-radius:30px;
+    font-size:13px;
+}
+
+.hero{
+    position:relative;
+    z-index:2;
+    margin-top:50px;
+    max-width:700px;
+}
+
+.hero h1{
+    font-size:42px;
+    line-height:1.1;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#d7ddea;
+    line-height:1.6;
+}
+
+
+/* CONTAINER */
+
+.container{
+    width:86%;
+    max-width:1100px;
+    margin:-65px auto 50px;
+    position:relative;
+    z-index:5;
+}
+
+
+/* SEKOLAH */
+
+.school-card{
+    background:white;
+    border-radius:24px;
+    padding:18px;
+    box-shadow:0 18px 45px rgba(18,31,55,.13);
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:25px;
+    align-items:center;
+}
+
+.school-card img{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    border-radius:17px;
+}
+
+.school-info small{
+    color:#8b93a4;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.school-info h2{
+    font-size:28px;
+    margin:8px 0;
+    color:#172033;
+}
+
+.school-info p{
+    color:#687286;
+    line-height:1.6;
+}
+
+
+/* CARD */
+
+.card{
+    background:white;
+    border-radius:22px;
+    padding:28px;
+    margin-top:24px;
+    box-shadow:0 10px 30px rgba(18,31,55,.07);
+}
+
+.card-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:22px;
+}
+
+.icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#172033;
+    color:#e8ca76;
+    display:grid;
+    place-items:center;
+    font-size:20px;
+}
+
+.card-title h2{
+    font-size:21px;
+}
+
+
+/* FORM */
+
+.form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+label{
+    font-size:13px;
+    font-weight:bold;
+    color:#596377;
+    display:block;
+    margin-bottom:7px;
+}
+
+input{
+    width:100%;
+    padding:14px 15px;
+    border:1px solid #dde2ea;
+    border-radius:12px;
+    outline:none;
+    font-size:14px;
+    background:#fafbfc;
+}
+
+input:focus{
+    border-color:#d6b75f;
+    background:white;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+
+/* BUTTON */
+
+.btn{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:0;
+    border-radius:13px;
+    background:linear-gradient(135deg,#e8ca76,#cda94e);
+    color:#172033;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    filter:brightness(.97);
+}
+
+
+/* HASIL */
+
+#result{
+    display:none;
+}
+
+.student-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    padding-bottom:20px;
+    border-bottom:1px solid #edf0f4;
+}
+
+.student-head h2{
+    font-size:25px;
+}
+
+.student-head p{
+    color:#788194;
+    margin-top:5px;
+}
+
+.status{
+    padding:11px 18px;
+    border-radius:30px;
+    background:#e8f8ef;
+    color:#18834b;
+    font-weight:bold;
+    font-size:13px;
+}
+
+
+/* NILAI */
+
+.subjects{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:22px;
+}
+
+.subject{
+    border:1px solid #edf0f4;
+    border-radius:15px;
+    padding:16px;
+}
+
+.subject-top{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.score{
+    color:#172033;
+}
+
+.bar{
+    height:7px;
+    background:#edf0f4;
+    border-radius:20px;
+    margin-top:12px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    background:linear-gradient(90deg,#172033,#e8ca76);
+    border-radius:20px;
+}
+
+
+/* RINGKASAN */
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:20px;
+}
+
+.summary-box{
+    background:#f7f8fb;
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+}
+
+.summary-box span{
+    font-size:12px;
+    color:#7a8394;
+}
+
+.summary-box strong{
+    display:block;
+    font-size:28px;
+    margin-top:7px;
+}
+
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    color:#8b93a4;
+    font-size:12px;
+    padding:10px 0 35px;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:750px){
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .school-card{
+        grid-template-columns:1fr;
+    }
+
+    .school-card img{
+        height:220px;
+    }
+
+    .form,
+    .subjects{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .summary{
+        grid-template-columns:1fr;
+    }
+
+    .student-head{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+}
+
+
+/* PRINT */
+
+@media print{
+
+    .header,
+    .card:first-of-type,
+    footer,
+    .print{
+        display:none !important;
+    }
+
+    .container{
+        width:100%;
+        margin:0;
+    }
+
+    body{
+        background:white;
+    }
+
+    #result{
+        display:block !important;
+        box-shadow:none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="top">
+
+        <div class="logo">
+            ACADEMIC • RPL
+        </div>
+
+        <div class="badge">
+            STUDENT SYSTEM
+        </div>
+
+    </div>
+
+
+    <div class="hero">
+
+        <h1>
+            Sistem Informasi<br>
+            Akademik Siswa
+        </h1>
+
+        <p>
+            Cek biodata dan hasil nilai akademik siswa
+            dengan tampilan sederhana, modern, dan mudah digunakan.
+        </p>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- SEKOLAH -->
+
+<section class="school-card">
+
+    <img src="SMK9.jpg" alt="Gedung SMKN 9 Medan">
+
+
+    <div class="school-info">
+
+        <small>
+            INSTITUSI PENDIDIKAN
+        </small>
+
+        <h2 id="schoolName">
+            Nama Sekolah
+        </h2>
+
+        <p id="schoolDesc">
+            Masukkan nama sekolah pada formulir di bawah.
+            Foto sekolah akan tetap tampil sebagai identitas sistem.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- DATA SISWA -->
+
+<section class="card">
+
+    <div class="card-title">
+
+        <div class="icon">
+            👤
+        </div>
+
+        <div>
+
+            <h2>
+                Data Siswa
+            </h2>
+
+            <p style="color:#7b8495;font-size:13px;margin-top:4px">
+                Lengkapi data sebelum melihat nilai.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="form">
+
+
+        <div>
+
+            <label>
+                Nama Lengkap
+            </label>
+
+            <input
+                type="text"
+                id="nama"
+                placeholder="Masukkan nama lengkap"
+            >
+
+        </div>
+
+
+
+        <div>
+
+            <label>
+                NIS
+            </label>
+
+            <input
+                type="text"
+                id="nis"
+                placeholder="Masukkan NIS"
+            >
+
+        </div>
+
+
+
+        <div>
+
+            <label>
+                Kelas
+            </label>
+
+            <input
+                type="text"
+                id="kelas"
+                placeholder="Contoh: XI RPL"
+            >
+
+        </div>
+
+
+
+        <div>
+
+            <label>
+                Jurusan
+            </label>
+
+            <input
+                type="text"
+                id="jurusan"
+                placeholder="Rekayasa Perangkat Lunak"
+            >
+
+        </div>
+
+
+
+        <div class="full">
+
+            <label>
+                Nama Sekolah
+            </label>
+
+            <input
+                type="text"
+                id="sekolah"
+                placeholder="Contoh: SMKN 9 Medan"
+                oninput="ubahSekolah()"
+            >
+
+        </div>
+
+    </div>
+
+
+
+    <button
+        class="btn"
+        onclick="cekNilai()"
+    >
+        🔍 CEK NILAI SISWA
+    </button>
+
+</section>
+
+
+
+<!-- HASIL NILAI -->
+
+<section class="card" id="result">
+
+
+    <div class="student-head">
+
+        <div>
+
+            <h2 id="resultName">
+                Nama Siswa
+            </h2>
+
+            <p id="resultInfo">
+                Kelas • Jurusan • NIS
+            </p>
+
+        </div>
+
+
+        <div
+            class="status"
+            id="status"
+        >
+            LULUS
+        </div>
+
+    </div>
+
+
+
+    <!-- DAFTAR NILAI -->
+
+    <div class="subjects">
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <span>
+                    Bahasa Indonesia
+                </span>
+
+                <span class="score">
+                    88
+                </span>
+
+            </div>
+
+            <div class="bar">
+                <div
+                    class="fill"
+                    style="width:88%"
+                ></div>
+            </div>
+
+        </div>
+
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <span>
+                    Matematika
+                </span>
+
+                <span class="score">
+                    84
+                </span>
+
+            </div>
+
+            <div class="bar">
+                <div
+                    class="fill"
+                    style="width:84%"
+                ></div>
+            </div>
+
+        </div>
+
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <span>
+                    Bahasa Inggris
+                </span>
+
+                <span class="score">
+                    90
+                </span>
+
+            </div>
+
+            <div class="bar">
+                <div
+                    class="fill"
+                    style="width:90%"
+                ></div>
+            </div>
+
+        </div>
+
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <span>
+                    Pendidikan Pancasila
+                </span>
+
+                <span class="score">
+                    87
+                </span>
+
+            </div>
+
+            <div class="bar">
+                <div
+                    class="fill"
+                    style="width:87%"
+                ></div>
+            </div>
+
+        </div>
+
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <span>
+                    Pemrograman Web
+                </span>
+
+                <span class="score">
+                    92
+                </span>
+
+            </div>
+
+            <div class="bar">
+                <div
+                    class="fill"
+                    style="width:92%"
+                ></div>
+            </div>
+
+        </div>
+
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <span>
+                    Basis Data
+                </span>
+
+                <span class="score">
+                    89
+                </span>
+
+            </div>
+
+            <div class="bar">
+                <div
+                    class="fill"
+                    style="width:89%"
+                ></div>
+            </div>
+
+        </div>
+
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <span>
+                    PBO
+                </span>
+
+                <span class="score">
+                    86
+                </span>
+
+            </div>
+
+            <div class="bar">
+                <div
+                    class="fill"
+                    style="width:86%"
+                ></div>
+            </div>
+
+        </div>
+
+
+
+        <div class="subject">
+
+            <div class="subject-top">
+
+                <span>
+                    Produktif RPL
+                </span>
+
+                <span class="score">
+                    94
+                </span>
+
+            </div>
+
+            <div class="bar">
+                <div
+                    class="fill"
+                    style="width:94%"
+                ></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RINGKASAN -->
+
+    <div class="summary">
+
+
+        <div class="summary-box">
+
+            <span>
+                TOTAL NILAI
+            </span>
+
+            <strong id="total">
+                710
+            </strong>
+
+        </div>
+
+
+
+        <div class="summary-box">
+
+            <span>
+                RATA-RATA
+            </span>
+
+            <strong id="rata">
+                88.75
+            </strong>
+
+        </div>
+
+
+
+        <div class="summary-box">
+
+            <span>
+                PREDIKAT
+            </span>
+
+            <strong id="predikat">
+                B
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+
+    <button
+        class="btn print"
+        onclick="window.print()"
+    >
+        🖨️ CETAK HASIL NILAI
+    </button>
+
+
+</section>
+
+</main>
+
+
+
+<footer>
+
+    Student Academic System • Rekayasa Perangkat Lunak
+
+</footer>
+
+
+
+<script>
+
+
+/* DATA NILAI */
+
+const nilai = [
+    88,
+    84,
+    90,
+    87,
+    92,
+    89,
+    86,
+    94
+];
+
+
+
+/* NAMA SEKOLAH */
+
+function ubahSekolah(){
+
+    let sekolah =
+        document.getElementById("sekolah").value.trim();
+
+
+    if(sekolah === ""){
+
+        document.getElementById("schoolName").innerText =
+            "Nama Sekolah";
+
+        document.getElementById("schoolDesc").innerText =
+            "Masukkan nama sekolah pada formulir di bawah. Foto sekolah akan tetap tampil sebagai identitas sistem.";
+
+    }
+
+    else{
+
+        document.getElementById("schoolName").innerText =
+            sekolah;
+
+        document.getElementById("schoolDesc").innerText =
+            "Sistem akademik siswa untuk " +
+            sekolah +
+            ".";
+
+    }
+
+}
+
+
+
+/* CEK NILAI */
+
+function cekNilai(){
+
+    let nama =
+        document.getElementById("nama").value.trim();
+
+    let nis =
+        document.getElementById("nis").value.trim();
+
+    let kelas =
+        document.getElementById("kelas").value.trim();
+
+    let jurusan =
+        document.getElementById("jurusan").value.trim();
+
+    let sekolah =
+        document.getElementById("sekolah").value.trim();
+
+
+
+    /* CEK DATA */
+
+    if(
+        nama === "" ||
+        nis === "" ||
+        kelas === "" ||
+        jurusan === "" ||
+        sekolah === ""
+    ){
+
+        alert(
+            "Silakan isi semua data siswa terlebih dahulu!"
+        );
+
+        return;
+
+    }
+
+
+
+    /* HITUNG NILAI */
+
+    let total =
+        nilai.reduce(
+            (a,b) => a + b,
+            0
+        );
+
+
+    let rata =
+        total / nilai.length;
+
+
+
+    /* PREDIKAT */
+
+    let predikat;
+
+
+    if(rata >= 90){
+
+        predikat = "A";
+
+    }
+
+    else if(rata >= 80){
+
+        predikat = "B";
+
+    }
+
+    else if(rata >= 70){
+
+        predikat = "C";
+
+    }
+
+    else{
+
+        predikat = "D";
+
+    }
+
+
+
+    /* STATUS */
+
+    let status =
+        rata >= 75
+        ? "LULUS"
+        : "BELUM LULUS";
+
+
+
+    /* TAMPILKAN DATA */
+
+    document.getElementById("schoolName").innerText =
+        sekolah;
+
+
+    document.getElementById("schoolDesc").innerText =
+        "Sistem akademik siswa untuk " +
+        sekolah +
+        ".";
+
+
+    document.getElementById("resultName").innerText =
+        nama;
+
+
+    document.getElementById("resultInfo").innerText =
+        kelas +
+        " • " +
+        jurusan +
+        " • NIS " +
+        nis;
+
+
+
+    /* HASIL */
+
+    document.getElementById("total").innerText =
+        total;
+
+
+    document.getElementById("rata").innerText =
+        rata.toFixed(2);
+
+
+    document.getElementById("predikat").innerText =
+        predikat;
+
+
+    document.getElementById("status").innerText =
+        status;
+
+
+
+    /* WARNA STATUS */
+
+    if(status === "LULUS"){
+
+        document.getElementById("status").style.background =
+            "#e8f8ef";
+
+        document.getElementById("status").style.color =
+            "#18834b";
+
+    }
+
+    else{
+
+        document.getElementById("status").style.background =
+            "#fff0f0";
+
+        document.getElementById("status").style.color =
+            "#c43d3d";
+
+    }
+
+
+
+    /* TAMPILKAN HASIL */
+
+    document.getElementById("result").style.display =
+        "block";
+
+
+    document.getElementById("result").scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+</script>
+
+
+</body>
+</html>
